@@ -3,7 +3,7 @@
 
 // Construtores
 ScrumMaster::ScrumMaster() {}
-ScrumMaster::ScrumMaster(string nome) : Pessoa(nome, "Scrum Master") {}
+ScrumMaster::ScrumMaster(const string& nome) : Pessoa(nome, "Scrum Master") {}
 
 // Destrutor
 ScrumMaster::~ScrumMaster() {}

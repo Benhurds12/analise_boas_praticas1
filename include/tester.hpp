@@ -3,16 +3,16 @@
 #include "tarefa.hpp"
 
 class Tester : public Pessoa {
-    public:
-        //construtores e destrutores
-        Tester();
-        Tester(string nome);
-        Tester(string nome, Pessoa * proximo);
-        ~Tester();
+public:
+    // Construtores e destrutores
+    Tester();
+    explicit Tester(const string& nome);
+    Tester(const string& nome, Pessoa* proximo);
+    ~Tester();
 
-        //funções
-        void validarTarefasDe(Dev * p);
-        void declinarTarefasDe(Dev * p);
-        void validarTarefa(Tarefa * t);
-        void declinarTarefa(Tarefa * t);
+    // Funções
+    void validarTarefasDe(Dev* p);
+    void declinarTarefasDe(Dev* p);
+    void validarTarefa(Tarefa* t);
+    void declinarTarefa(Tarefa* t);
 };

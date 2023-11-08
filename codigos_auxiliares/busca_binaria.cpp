@@ -1,7 +1,7 @@
 #define VECTOR_SIZE 100
 
 //busca binaria recursiva
-int recursive_binary_search(int vector[VECTOR_SIZE], int begin, int end, int item)
+int recursive_binary_search(const int *vector[VECTOR_SIZE], int begin, int end, int item)
 {
     /* Índice representando o meio do sub-vetor begin->end */
     int i = (begin + end) / 2;
@@ -25,7 +25,7 @@ int recursive_binary_search(int vector[VECTOR_SIZE], int begin, int end, int ite
 
 //busca binaria iterativa
 
-int iterative_binary_search(int vector[VECTOR_SIZE], int item)
+int iterative_binary_search(const int *vector[VECTOR_SIZE], int item)
 {
     int begin = 0;
     int end = VECTOR_SIZE - 1;

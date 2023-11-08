@@ -6,25 +6,25 @@ Pessoa::Pessoa(){
   this->proximo = nullptr;
 }
 
-Pessoa::Pessoa(std::string nome){
+Pessoa::Pessoa(const std::string& nome){
   this->nome = nome;
   this->funcao = "";
   this->proximo = nullptr;
 }
 
-Pessoa::Pessoa(string nome, string funcao){
+Pessoa::Pessoa(const std::string& nome, const std::string& funcao){
   this->nome = nome;
   this->funcao = funcao;
   this->proximo = nullptr; 
 }
 
-Pessoa::Pessoa(string nome, Pessoa* proximo){
+Pessoa::Pessoa(const std::string& nome, Pessoa* proximo){
   this->nome = nome;
   this->funcao = "";
   this->proximo = proximo; 
 }
 
-Pessoa::Pessoa(Pessoa *proximo, string nome, string funcao){
+Pessoa::Pessoa(Pessoa* proximo, const std::string& nome, const std::string& funcao){
   this->nome = nome;
   this->funcao = funcao;
   this->proximo = proximo; 
@@ -41,7 +41,7 @@ Pessoa* Pessoa::getProximo(){
   return this->proximo;
 }
 
-void Pessoa::setNome(string nome){
+void Pessoa::setNome(const std::string& nome){
   this->nome = nome;
 }
 
@@ -49,9 +49,10 @@ string Pessoa::getNome(){
   return this->nome;
 }
 
-void Pessoa::setFuncao(string funcao){
+void Pessoa::setFuncao(const std::string& funcao){
   this->funcao = funcao;
 }
+
 
 string Pessoa::setFuncao(){
   return this->funcao;

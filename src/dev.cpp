@@ -3,13 +3,13 @@
 
 //Construtores
 Dev::Dev() {}
-Dev::Dev(string nome) : Pessoa(nome) {}
-Dev::Dev(string nome, Pessoa * proximo) : Pessoa(nome, proximo) {}
+Dev::Dev(const string& nome) : Pessoa(nome) {}
+Dev::Dev(const string& nome, Pessoa * proximo) : Pessoa(nome, proximo) {}
 
 //Destrutor
 Dev::~Dev() {}
 
 //Realização de tarefas
-void Dev::RealizarTarefas(string status) {}
+void Dev::RealizarTarefas(const string& status) {}
 
-void Dev::RealizarTarefaEspecifica(string status, int idTarefa) {}
+void Dev::RealizarTarefaEspecifica(const string& status, int idTarefa) {}

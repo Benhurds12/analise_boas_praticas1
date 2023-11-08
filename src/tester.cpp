@@ -3,8 +3,8 @@
 
 //Construtores
 Tester::Tester() {}
-Tester::Tester(string nome) : Pessoa(nome) {}
-Tester::Tester(string nome, Pessoa * proximo) : Pessoa(nome, proximo) {}
+Tester::Tester(string const nome) : Pessoa(nome) {}
+Tester::Tester(string const nome, Pessoa * proximo) : Pessoa(nome, proximo) {}
 
 //Destrutor
 Tester::~Tester() {}

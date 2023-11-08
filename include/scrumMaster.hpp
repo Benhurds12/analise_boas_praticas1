@@ -5,7 +5,7 @@ class ScrumMaster : public Pessoa {
     public:
         //construtores e destrutores
         ScrumMaster();
-        ScrumMaster(string nome);
+        explicit ScrumMaster(string nome);
         ~ScrumMaster();
 
         //funções

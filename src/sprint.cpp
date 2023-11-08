@@ -61,58 +61,62 @@ void Sprint::gerarRelatorioDe(Dev * p){
 
 
 //SPRINT SO ADICIONA TAREFA DO BACKLOG AJUSTAR ISSO NA MAIN
-void Sprint::addTarefa(Tarefa * t){
-  Tarefa * aux;
-  Tarefa * proximo;
-  //lista esta vazia
-  if(this->cabeca == NULL){
-    this->cabeca = t;
-    this->quantidade++;
+void Sprint::addTarefa(Tarefa *t) {
+  if (t == nullptr) {
+    std::cout << "Tarefa inválida. Não pode ser adicionada." << std::endl;
+    return;
   }
-  //vai add sempre na segunda posição
-  else{
-    aux = this->cabeca->getProximo();
-    proximo = t;
-    this->cabeca->setProximo(proximo);
-    proximo->setProximo(aux);
 
-    this->quantidade++;
+  if (this->cabeca == nullptr) {
+    // Se a lista estiver vazia, insira a tarefa como a cabeça.
+    this->cabeca = t;
+    t->setProximo(nullptr);  // Garanta que a próxima tarefa seja nula.
+  } else {
+    // Encontre o último elemento da lista e adicione a nova tarefa a seguir.
+    Tarefa *atual = this->cabeca;
+    while (atual->getProximo() != nullptr) {
+      atual = atual->getProximo();
+    }
+    atual->setProximo(t);
+    t->setProximo(nullptr);  // Garanta que a próxima tarefa seja nula.
   }
+
+  this->quantidade++;
 }
 
 
-void Sprint::deletarTarefa(Tarefa * t){
-  Tarefa * atual = this->cabeca;
-  Tarefa * proximo;
-  Tarefa * aux;
-  
-  for(int i=0;i<this->quantidade;i++){
-    if(atual != t){
-      //caso a tarefa seja o proximo
-      if(atual->getProximo() == t){
-        aux = atual->getProximo();
-        proximo = aux->getProximo();
 
-        atual->setProximo(proximo);
-        
+void Sprint::deletarTarefa(Tarefa * t) {
+  Tarefa * atual = this->cabeca;
+  Tarefa * anterior = nullptr;
+
+  for (int i = 0; i < this->quantidade; i++) {
+    if (atual != t) {
+      // If the current task is not the one we want to delete
+      if (atual->getProximo() == t) {
+        // If the next task is the one we want to delete
+        Tarefa * proximo = t->getProximo();
+
+        if (atual == this->cabeca) {
+          this->cabeca = proximo;
+        } else {
+          anterior->setProximo(proximo);
+        }
+
         this->quantidade--;
         break;
-      }
-        
-      else{
+      } else {
+        anterior = atual;
         atual = atual->getProximo();
       }
-        
-    //caso o atual seja NULL
-    }else if(atual == NULL){
-      std::cout << "Tarefa não encontrada" << std::endl; break;
-      }
-    //caso o atual for a cabeça
-    else if(atual == cabeca){
-        cabeca = atual->getProximo();
-        this->quantidade--;
-        break;
-      }
+    } else if (atual == NULL) {
+      std::cout << "Tarefa não encontrada" << std::endl;
+      break;
+    } else if (atual == cabeca) {
+      cabeca = atual->getProximo();
+      this->quantidade--;
+      break;
     }
+  }
 }
 

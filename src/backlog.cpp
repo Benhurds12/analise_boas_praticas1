@@ -39,59 +39,43 @@ int Backlog::getQuantidade(){
   return this->quantidade;          
 }
 
-void Backlog::addTarefa(Tarefa * t){
-  Tarefa * aux;
-  Tarefa * proximo;
-  //lista esta vazia
-  if(this->cabeca == NULL){
-    this->cabeca = t;
-    this->quantidade++;
-  }
-  //vai add sempre na segunda posição
-  else{
-    aux = this->cabeca->getProximo();
-    proximo = t;
-    this->cabeca->setProximo(proximo);
-    proximo->setProximo(aux);
-
-    this->quantidade++;
-  }
-}
-
-void Backlog::deletarTarefa(Tarefa * t){
-  Tarefa * atual = this->cabeca;
-  Tarefa * proximo;
-  Tarefa * aux;
-  
-  for(int i=0;i<this->quantidade;i++){
-    if(atual != t){
-      //caso a tarefa seja o proximo
-      if(atual->getProximo() == t){
-        aux = atual->getProximo();
-        proximo = aux->getProximo();
-
-        atual->setProximo(proximo);
-        
-        this->quantidade--;
-        break;
-      }
-        
-      else{
-        atual = atual->getProximo();
-      }
-        
-    //caso o atual seja NULL
-    }else if(atual == NULL){
-      std::cout << "Tarefa não encontrada" << std::endl; break;
-      }
-    //caso o atual for a cabeça
-    else if(atual == cabeca){
-        cabeca = atual->getProximo();
-        this->quantidade--;
-        break;
-      }
+void Backlog::addTarefa(Tarefa *t) {
+    if (this->cabeca == NULL) {
+        // Se a lista está vazia, simplesmente defina a tarefa como a cabeça.
+        this->cabeca = t;
+    } else {
+        // Caso contrário, insira a tarefa no início da lista.
+        t->setProximo(this->cabeca);
+        this->cabeca = t;
     }
+    
+    this->quantidade++;
 }
+
+void Backlog::deletarTarefa(Tarefa *t) {
+    Tarefa *anterior = nullptr;
+    Tarefa *atual = this->cabeca;
+
+    while (atual != nullptr) {
+        if (atual == t) {
+            if (anterior != nullptr) {
+                anterior->setProximo(atual->getProximo());
+            } else {
+                cabeca = atual->getProximo();
+            }
+
+            this->quantidade--;
+            return;
+        }
+
+        anterior = atual;
+        atual = atual->getProximo();
+    }
+
+    std::cout << "Tarefa não encontrada" << std::endl;
+}
+
+
 
 void Backlog::consultar(){
 Tarefa * atual = this->cabeca;
@@ -104,20 +88,16 @@ Tarefa * atual = this->cabeca;
 } //mostrar tarefas do backlog
 
 //pega uma tarefa atraves do id
-Tarefa * Backlog::getTarefa(int id){
-  
-Tarefa * atual = this->cabeca;
+Tarefa * Backlog::getTarefa(int id) {
+    Tarefa * atual = this->cabeca;
 
-  if(atual != NULL){
-    for(int i=0;i<this->quantidade;i++){
-      if(atual->getId()==id){
-        return atual; break;
-      }
-      else{
-        atual = atual->getProximo();
-      }
+    while (atual != NULL) {
+        if (atual->getId() == id) {
+            return atual;
+        } else {
+            atual = atual->getProximo();
+        }
     }
-  }else{
-    return NULL;
-  }
+
+    return NULL;  // Retorna NULL se a tarefa não for encontrada
 }

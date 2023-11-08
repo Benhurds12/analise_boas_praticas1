@@ -8,23 +8,26 @@ void swapping(int &a, int &b) {         //swap the content of a and b
    b = temp;
 }
 
-void display(int *array, int size) {
+void display(const int *array, int size) {
    for(int i = 0; i<size; i++)
       cout << array[i] << " ";
    cout << endl;
 }
 
 void selectionSort(int *array, int size) {
-   int i, j, imin;
-   for(i = 0; i<size-1; i++) {
-      imin = i;   //get index of minimum data
-      for(j = i+1; j<size; j++)
-         if(array[j] < array[imin])
+   int i, j;
+   for(i = 0; i < size - 1; i++) {
+      int imin = i; // Movido a declaração para o escopo interno
+      for(j = i + 1; j < size; j++) {
+         if(array[j] < array[imin]) {
             imin = j;
-         //placing in correct position
-         swap(array[i], array[imin]);
+         }
+      }
+      // Colocando na posição correta
+      swap(array[i], array[imin]);
    }
 }
+
 
 int main() {
    int n;

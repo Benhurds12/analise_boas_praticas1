@@ -8,7 +8,7 @@ class Dev : public Pessoa {
     public:
         //construtores e destrutores
         Dev();
-        Dev(string nome);
+        explicit Dev(string nome);
         Dev(string nome, Pessoa * proximo);
         ~Dev();
 
